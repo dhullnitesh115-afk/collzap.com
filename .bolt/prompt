@@ -1,0 +1,85 @@
+CollZap — Project Instructions for Bolt
+
+App Overview:
+CollZap is India's first campus-based peer matching platform for college students. Students verify their college identity, select serious interests, take a seriousness assessment, and get automatically matched with same-campus peers at the same knowledge level.
+
+Design System:
+
+Background: White (
+#FFFFFF) and light grey (
+#F8F9FA) — Light theme
+Primary accent: Electric Blue (
+#3B7EFF) — buttons, links, highlights
+Text: Dark navy (
+#0A0F1E) headings, dark grey (
+#444444) body
+Cards: White background, light grey border (
+#E5E7EB), subtle shadow
+Border radius: 12px cards, 8px buttons
+Font: Inter or Poppins throughout
+Mobile-first — optimized for 390px width
+Bottom navigation: 4 tabs — Home, Circle, Chat, Profile
+Never use dark background unless specifically asked
+
+Tech Stack:
+
+Frontend: React + Tailwind CSS
+Backend: Supabase (PostgreSQL, Auth, Realtime, Storage)
+Email: Resend API (key: re_7SkyLVmX_APdx1SPZS14AAyPC4bXxijFZ) from otp@collzap.com
+Never suggest switching to a different backend or frontend library
+
+App Flow (in order):
+
+Splash + 3-slide Welcome Carousel
+Sign Up — College Email OTP or Document Upload
+Profile Setup — photo, name, college, year, city, 3 story prompts, proof of work
+Project Type — Long-Term Peer or Short-Term Buddy (can select both)
+Interest Selection — Long-Term: max 2 from 16 interests. Short-Term: 1 activity from 7
+Seriousness Test — 25 questions total (Long-Term only) — Knowledge + Behavior + Commitment
+Score Result — Beginner/Learning/Intermediate/Expert
+Connection Type — 1-on-1, Short Group, Society (Long-Term) or 1-on-1, Short Group (Short-Term)
+Auto Match — opens chat directly on match, queue message if no match
+Chat — text only, real-time, read receipts
+
+Matching Logic:
+
+Match by: same college + same interest + similar level (±1 level tolerance) + same connection type
+Short Group: open chat at 2 members, add more up to 4 automatically
+Society: auto-join instantly
+Queue: check every 30 seconds for new matches
+
+Key Rules:
+
+Always add back button (←) on every screen except Splash and Home
+Never show OTP on screen — send to email only
+Score calculation always server-side — never client-side
+Skeleton loaders on all screens — never blank white loading
+All forms validate before enabling Next/Continue button
+College name from email domain — not editable by user
+Verification pending users can complete profile and test — only matching is locked
+
+Connection Types:
+
+1-on-1: private chat between 2 matched peers
+Short Group: group chat 2-4 people — opens at 2, adds more automatically
+Society: campus-wide community — auto-join — instant access
+
+Interest Lists:
+Long-Term (16): Coding, Startups, Design, Content Creation, Public Speaking, Music, Photography, Finance, Fitness, Exam Prep, Research, Gaming, Social Work, Acting, Writing, Dance
+Short-Term (7): English Speaking, Gym Buddy, Book Club, Sports Team, Side Project, Skill Sprint, Exam Prep Partner
+
+Score Levels:
+
+Beginner: 0-39%
+Learning: 40-64%
+Intermediate: 65-84%
+Expert: 85-100%
+
+Do NOT:
+
+Change color theme to dark unless specifically asked
+Add any new libraries without asking
+Remove back buttons
+Show OTP on screen
+Change the app flow order
+Add features not in the spec without asking
